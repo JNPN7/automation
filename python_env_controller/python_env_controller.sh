@@ -3,7 +3,7 @@ installedPythonPath="/usr/bin/python"
 ## functions ##
 function helpFunc(){
 echo "Description
-Python virtual envirionment controller
+Python virtual envirionment manager
 
 Usage:
 	python_env_controller.sh [OPTION]...
