@@ -1,4 +1,4 @@
-# Python virtual environmet manager
+# Python virtual environment manager
 You can manage your python virtual environment using this script
 
 Description
