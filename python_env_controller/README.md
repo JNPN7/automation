@@ -5,8 +5,10 @@ Description
 Python virtual envirionment manager
 
 Usage:
+
 	python_env_controller.sh [OPTION]...
 Options:
+
 	-h	display help
 	-p	display versions of python available in system
 	-s	shows all virtual environment	
@@ -16,4 +18,5 @@ Options:
 	-d	deactivate virtual environment
 	-r	remove virtual environment
 Work required:
+
 	-a -d: activate and deactivate not working properly need some work
