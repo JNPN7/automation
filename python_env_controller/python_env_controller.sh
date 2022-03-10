@@ -1,3 +1,5 @@
+#! /usr/bin/bash
+
 virtualEnvPath="/home/juhel/.pyenv/"
 installedPythonPath="/usr/bin/python"
 ## functions ##
