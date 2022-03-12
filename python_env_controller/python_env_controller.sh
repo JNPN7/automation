@@ -14,7 +14,7 @@ echo "
 "
 }
 function helpFunc(){
-echo "Description
+echo "Description:
 Python virtual envirionment manager
 
 Usage:
@@ -29,8 +29,7 @@ Options:
 	-d	deactivate virtual environment
 	-r	remove virtual environment
 Work required:
-	-a -d: activate and deactivate not working properly need some work
-"
+	-a -d: activate and deactivate not working properly need some work"
 }
 deactivate () {
     unset -f pydoc >/dev/null 2>&1 || true
@@ -290,5 +289,8 @@ fi
 
 ## banner ##
 banner
-echo "Get help:"
-echo "python_env_controller.sh -h"
+echo "Description:
+Python virtual envirionment manager
+
+Get help:
+python_env_controller.sh -h"
