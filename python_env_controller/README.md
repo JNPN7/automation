@@ -35,3 +35,4 @@ Now, you can just call the function in your terminal to activate your virtual en
 To deactivate just type deactivate
 
 	$ deactivate
+	
