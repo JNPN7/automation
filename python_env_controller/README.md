@@ -20,3 +20,18 @@ Options:
 Work required:
 
 	-a -d: activate and deactivate not working properly need some work
+
+## Activation using function in .bashrc
+You can activate your virtual environment by adding function to your .bashrc like you add alias:
+
+	function pyactivate() {
+		. $HOME/.pyenv/$1/bin/acitivate
+	}
+
+Now, you can just call the function in your terminal to activate your virtual environment
+
+	$ pyactivate <virtual_environment_name>
+
+To deactivate just type deactivate
+
+	$ deactivate
