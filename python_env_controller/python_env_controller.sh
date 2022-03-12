@@ -2,7 +2,17 @@
 
 virtualEnvPath="${HOME}/.pyenv/"
 installedPythonPath="/usr/bin/python"
+
 ## functions ##
+function banner(){
+echo "
+    ____  __  __    _____  ___
+   / __ \/ / / /\  / / __''__ \\
+  / /_/ / /_/ /\ \/ / / / / / /
+ / .___/\__, /  \__/_/ /_/ /_/
+/_/    /____/
+"
+}
 function helpFunc(){
 echo "Description
 Python virtual envirionment manager
@@ -205,6 +215,7 @@ function removeEnvironment(){
 	echo "Aborting..."
 	exit 1
 }
+
 ## flags ##
 while getopts dsphc:v:a:r: flag; do
 	case $flag in
@@ -276,4 +287,8 @@ elif [[ -n $activate ]]; then
 elif [[ -n $remove ]]; then
 	removeEnvironment
 fi
-helpFunc
+
+## banner ##
+banner
+echo "Get help:"
+echo "python_env_controller.sh -h"

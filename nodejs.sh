@@ -9,9 +9,19 @@ configFile="config.json"
 declare -A files=(["routes"]="web.js+api.js") ## add needed files --> (["route"]="web.js+api.js" ["controllers"] ="adminController.js+userController.js") 
 
 ## some styles ##
-figlet node js -f slant
+#figlet node js -f slant
 
 ## functions ##
+function banner(){
+echo "
+		    __ 		_
+   ____  ____  ____/ /__       (_)____
+  / __ \/ __ \/ __  / _ \     / / ___/
+ / / / / /_/ / /_/ /  --/    / (--  )
+/_/ /_/\____/\____/\___/  __/ /____/
+			 /___/
+"
+}
 function helpFunc(){
 echo "Description:
 Creates node js project
@@ -77,6 +87,9 @@ function makeFiles(){
 		done
 	done
 }
+
+## banner ##
+banner
 
 ## flags ##
 while getopts :f:p:h flag; do
