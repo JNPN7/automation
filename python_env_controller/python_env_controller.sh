@@ -1,6 +1,6 @@
 #! /usr/bin/bash
 
-virtualEnvPath="/home/juhel/.pyenv/"
+virtualEnvPath="${HOME}/.pyenv/"
 installedPythonPath="/usr/bin/python"
 ## functions ##
 function helpFunc(){
@@ -272,6 +272,8 @@ if [[ -n $createEnv ]]; then
 	createPythonEnvironment
 elif [[ -n $activate ]]; then 
 	activateEnvironment
+	#echo "~/.pyenv/test/bin/activate"
 elif [[ -n $remove ]]; then
 	removeEnvironment
 fi
+helpFunc
