@@ -205,7 +205,7 @@ function removeEnvironment(){
 		echo "Get all existed virtual envs: python_env_controller.sh -s"
 		exit 1
 	fi
-	read -p "Do you really want to remove $envName (Y,n):" remove
+	read -p "Do you really want to remove $envName [Y,n]:" remove
 	if [[ $remove == 'y' || $remove == 'Y' ]]; then
 		rm -r $virtualEnvPath$envName
 		echo "$envName deleted"
