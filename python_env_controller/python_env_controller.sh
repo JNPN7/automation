@@ -11,6 +11,7 @@ echo "
   / /_/ / /_/ /\ \/ / / / / / /
  / .___/\__, /  \__/_/ /_/ /_/
 /_/    /____/
+May the force be with you
 "
 }
 function helpFunc(){
@@ -201,8 +202,8 @@ function removeEnvironment(){
 		fi
 	done
 	if [[ b -eq 0 ]]; then 
-		echo "Virtual Environment doesn't exist"
-		echo "Get all existed virtual envs: python_env_controller.sh -s"
+		echo "Virtual Environment doesn't exists"
+		echo "Get all virtual envs: python_env_controller.sh -s"
 		exit 1
 	fi
 	read -p "Do you really want to remove $envName [Y,n]:" remove

@@ -20,6 +20,7 @@ echo "
  / / / / /_/ / /_/ /  --/    / (--  )
 /_/ /_/\____/\____/\___/  __/ /____/
 			 /___/
+May the force be with you
 "
 }
 function helpFunc(){
