@@ -25,7 +25,10 @@ Options:
 	-s	show all workspace
 	-c	create workspace
 	-r	remove workspace
-
+	-o	open workspace
+	-a	add in workspace
+	-d	workspace details
+	-v  open workspace in vim
 "
 }
 
@@ -85,7 +88,7 @@ function addInWorkspace(){
 
 function removeWorkspace(){
 	checkIfWorkspaceExists
-	read -p "Do you really want to remove $workspaceName [Y,n]:" remove
+	read -p "Do you really want to remove $workspaceName [y,N]:" remove
 	if [[ $remove == 'y' || $remove == 'Y' ]]; then 
 		local workspace=""
 		getWorkspacePath $workspaceName $workspace
@@ -113,9 +116,17 @@ function openWorkspace(){
 	code $workspace
 }
 
+function openWorkspaceVim(){
+	checkIfWorkspaceExists
+	local workspace=""
+	getWorkspacePath $workspaceName $workspace
+	local path=`awk '/"path": / {print $NF}' $workspace | awk -F '"' '{print $2}'`
+	vim $path
+}
+
 ############### main #################
 ## flags ##
-while getopts hsc:d:a:r:o: flag; do
+while getopts hsc:d:a:r:o:v: flag; do
 	case $flag in 
 		h)
 			helpFunc
@@ -148,6 +159,11 @@ while getopts hsc:d:a:r:o: flag; do
 		o)
 			workspaceName=${OPTARG}
 			openWorkspace
+			exit 1
+			;;
+		v)
+			workspaceName=${OPTARG}
+			openWorkspaceVim
 			exit 1
 			;;
 		*)

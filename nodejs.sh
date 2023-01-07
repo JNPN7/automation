@@ -5,7 +5,7 @@ echo $5
 loc=$5
 dirs=("controllers" "views" "public" "models" "routes" "middleware")
 indexFile="index.js"
-configFile="config.json"
+configFile=".env"
 declare -A files=(["routes"]="web.js+api.js") ## add needed files --> (["route"]="web.js+api.js" ["controllers"] ="adminController.js+userController.js") 
 
 ## some styles ##
