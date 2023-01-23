@@ -28,7 +28,7 @@ Options:
 	-o	open workspace
 	-a	add in workspace
 	-d	workspace details
-	-v  open workspace in vim
+	-v 	open workspace in vim
 "
 }
 
