@@ -22,5 +22,5 @@ Options:
 ## Changing directory to workspace
 You can change directory to the workspace using a simple step
 
-    $ cd `workspace_manager.sh -d [workspace_name]`	
+    $ cd `workspace_manager.sh -d <workspace_name>`	
 
