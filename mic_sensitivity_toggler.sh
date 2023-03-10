@@ -1,6 +1,5 @@
 #! /usr/bin/bash
 
-
 max_sen="70%"
 min_sen="0%"
 

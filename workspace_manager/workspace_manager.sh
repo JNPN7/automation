@@ -14,29 +14,30 @@ May the force be with you
 "
 }
 
-function helpFunc(){
+function helpFunc() {
 echo "Description:
 Vscode workspace manager
 
 Usages:
-	vscode_workspace_manager.sh [OPTION]...
+	workspace_manager.sh [OPTION]...
 Options:
 	-h	display help
 	-s	show all workspace
 	-c	create workspace
 	-r	remove workspace
-	-o	open workspace
+	-o	open workspace in vscode
 	-a	add in workspace
-	-d	workspace details
-	-v 	open workspace in vim
+	-w	workspace details
+    -v 	open workspace in vim
+    -d  get directory to workspace directory
 "
 }
 
-function getWorkspacePath(){
+function getWorkspacePath() {
 	workspace="${workspacePath}/${1}.code-workspace"
 } 
 
-function checkWorkspace(){
+function checkWorkspace() {
 	local workspaces=$(ls $workspacePath | awk -F. '{print $1}')
 	workspaces=( $workspaces )
 	b=0
@@ -49,7 +50,7 @@ function checkWorkspace(){
 	echo $b
 }
 
-function checkIfWorkspaceExists(){
+function checkIfWorkspaceExists() {
 	local exists=$(checkWorkspace)
 	if [[ exists -eq 0 ]]; then 
 		echo "Workspace doesn't exists"
@@ -58,12 +59,12 @@ function checkIfWorkspaceExists(){
 	fi
 }
 
-function showAllWorkspace(){
+function showAllWorkspace() {
 	echo "Workspaces you have:"
 	ls $workspacePath | awk -F. 'END {print "Total: "NR} {print $1}'
 }
 
-function createWorkspace(){
+function createWorkspace() {
 	local exists=$(checkWorkspace)
 	if [[ exists -eq 1 ]]; then 
 		echo "Workspace already exists"
@@ -76,7 +77,7 @@ function createWorkspace(){
 	sed 's|""|"'${projectPath}'",|' $workspaceTemplate > $workspace
 }
 
-function addInWorkspace(){
+function addInWorkspace() {
 	checkIfWorkspaceExists
 	local workspace=""
 	getWorkspacePath $workspaceName $workspace
@@ -86,7 +87,7 @@ function addInWorkspace(){
 	sed -i 's|'${tailLoc}'|'${tailLoc}'\n\t\t\t"path": "'${projectPath}'",|' "${workspacePath}/${workspaceName}.code-workspace"
 }
 
-function removeWorkspace(){
+function removeWorkspace() {
 	checkIfWorkspaceExists
 	read -p "Do you really want to remove $workspaceName [y,N]:" remove
 	if [[ $remove == 'y' || $remove == 'Y' ]]; then 
@@ -100,7 +101,7 @@ function removeWorkspace(){
 	exit 1
 }
 
-function getWorkspaceDetails(){
+function getWorkspaceDetails() {
 	checkIfWorkspaceExists
 	local workspace=""
 	getWorkspacePath $workspaceName $workspace
@@ -108,7 +109,7 @@ function getWorkspaceDetails(){
 	awk '/"path": / {print $NF}' $workspace | awk -F '"' '{print $2}'
 }
 
-function openWorkspace(){
+function openWorkspace() {
 	checkIfWorkspaceExists
 	local workspace=""
 	getWorkspacePath $workspaceName $workspace
@@ -116,17 +117,29 @@ function openWorkspace(){
 	code $workspace
 }
 
-function openWorkspaceVim(){
-	checkIfWorkspaceExists
+function getWorkspaceWorkingDir() {
 	local workspace=""
 	getWorkspacePath $workspaceName $workspace
-	local path=`awk '/"path": / {print $NF}' $workspace | awk -F '"' '{print $2}'`
+	path=`awk '/"path": / {print $NF}' $workspace | awk -F '"' '{print $2}'`
+}
+
+function openWorkspaceVim() {
+	checkIfWorkspaceExists
+    local path=""
+    getWorkspaceWorkingDir $path
 	vim $path
+}
+
+function echoDirOfWorkspace() {
+    checkIfWorkspaceExists
+    local path=""
+    getWorkspaceWorkingDir $path
+    echo $path
 }
 
 ############### main #################
 ## flags ##
-while getopts hsc:d:a:r:o:v: flag; do
+while getopts hsc:w:a:r:o:v:d: flag; do
 	case $flag in 
 		h)
 			helpFunc
@@ -141,7 +154,7 @@ while getopts hsc:d:a:r:o:v: flag; do
 			showAllWorkspace
 			exit 1
 			;;
-		d)
+		w)
 			workspaceName=${OPTARG}
 			getWorkspaceDetails
 			exit 1
@@ -164,6 +177,11 @@ while getopts hsc:d:a:r:o:v: flag; do
 		v)
 			workspaceName=${OPTARG}
 			openWorkspaceVim
+			exit 1
+			;;
+		d)
+			workspaceName=${OPTARG}
+			echoDirOfWorkspace
 			exit 1
 			;;
 		*)
